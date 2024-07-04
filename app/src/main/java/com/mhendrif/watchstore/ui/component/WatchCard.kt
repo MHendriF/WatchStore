@@ -1,6 +1,7 @@
 package com.mhendrif.watchstore.ui.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,10 +27,12 @@ import com.mhendrif.watchstore.ui.theme.Gray
 
 @Composable
 fun WatchCard(
-    modifier: Modifier = Modifier, watch: Watch
+    modifier: Modifier = Modifier, watch: Watch, onClick: () -> Unit = {}
 ) {
     Surface(
-        modifier = modifier.wrapContentSize(),
+        modifier = modifier
+            .wrapContentSize()
+            .clickable { onClick() },
         tonalElevation = 10.dp,
         shadowElevation = 0.75.dp,
         shape = RoundedCornerShape(14.dp),
@@ -72,10 +75,14 @@ fun WatchCard(
 @Preview
 @Composable
 private fun WatchCardPreview() {
-    WatchCard(watch = Watch(
-        name = "Apple Watch Series 6",
-        type = "Sport",
-        price = 3000000,
-        image = R.drawable.watch1
-    ))
+    WatchCard(
+        watch = Watch
+            (
+            name = "Apple Watch Series 6",
+            type = "Sport",
+            price = 3000000,
+            image = R.drawable.watch1
+        ),
+        onClick = {}
+    )
 }
